@@ -1,4 +1,4 @@
-import male from "../assets/male.avif";
+import male from "../../assets/male.avif";
 function CategoryCard() {
   return (
     <div class="relative h-96  w-80 ">
