@@ -1,6 +1,6 @@
 function Card(props) {
   return (
-    <div class="relative w-96 h-64">
+    <div class="relative w-96 h-64 mt-5 mb-5">
       <img
         class="inset-0 absolute object-cover w-full h-full"
         src={props.img}
