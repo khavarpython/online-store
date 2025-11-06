@@ -1,4 +1,4 @@
-import logo from "/logo.png";
+import logo from "../assets/logo.png";
 import { FaShoppingCart } from "react-icons/fa";
 function Header() {
   return (
@@ -6,7 +6,7 @@ function Header() {
       <div class="ml-5 flex justify-between  ">
         <img src={logo} alt="Logo" class="w-20" />
       </div>
-      <div class="hidden sm:flex ml-[16%] md:ml-[10%] lg:ml-[8%] text-xl gap-2">
+      <div class="hidden sm:flex text-lg ml-[13%] md:ml-[10%] lg:ml-[8%] md:text-xl gap-2">
         <a>Men</a>
         <a>Women</a>
         <a>Kids</a>

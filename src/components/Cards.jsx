@@ -1,7 +1,7 @@
 import Card from "./Card";
-import card1 from "/card-1.jpg";
-import card2 from "/card-2.png";
-import card3 from "/card-3.jpg";
+import card1 from "../assets/card-1.jpg";
+import card2 from "../assets/card-2.png";
+import card3 from "../assets/card-3.jpg";
 function Cards() {
   return (
     <div class="flex flex-wrap justify-around mt-20 font-bold mb-7">

@@ -1,4 +1,4 @@
-import hero_video from "/hero.mp4";
+import hero_video from "../assets/hero.mp4";
 function Hero() {
   return (
     <div class="relative w-full h-screen">
