@@ -1,7 +1,7 @@
-import Header from "../components/Home/Header";
+import Header from "../components/Header";
 import Hero from "../components/Home/Hero";
 import Cards from "../components/Home/Cards";
-import Footer from "../components/Home/Footer";
+import Footer from "../components/Footer";
 import Category from "../components/Home/Category";
 
 function Home() {

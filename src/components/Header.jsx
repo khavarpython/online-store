@@ -1,4 +1,4 @@
-import logo from "../../assets/logo.png";
+import logo from "../assets/logo.png";
 import { FaShoppingCart } from "react-icons/fa";
 function Header() {
   return (
