@@ -1,13 +1,40 @@
+import { useState, useEffect } from "react";
 import Card from "./Card";
-import card1 from "../../assets/card-1.jpg";
-import card2 from "../../assets/card-2.png";
-import card3 from "../../assets/card-3.jpg";
+
 function Cards() {
+  const [sneakers, setSneakers] = useState([]);
+  useEffect(() => {
+    const url = "https://the-sneaker-database.p.rapidapi.com/sneakers?limit=20";
+
+    const options = {
+      method: "GET",
+      headers: {
+        "x-rapidapi-key": import.meta.env.VITE_RAPID_KEY,
+        "x-rapidapi-host": import.meta.env.VITE_RAPID_HOST,
+      },
+    };
+    async function fetchSneaker() {
+      try {
+        const response = await fetch(url, options);
+        const result = await response.json();
+        setSneakers(result.results);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    fetchSneaker();
+  }, []);
+
   return (
-    <div class="flex flex-wrap justify-around mt-20 font-bold mb-7">
-      <Card img={card1} text="Cade Space 1s" />
-      <Card img={card2} text="Cade Space 2s" />
-      <Card img={card3} text="Cade Space 3s" />
+    <div class="flex flex-col my-20">
+      <h2 class="self-center text-4xl font-black">Popular Shoes</h2>
+      <div class="flex object-cover gap-5 font-bold mb-7 overflow-auto">
+        {sneakers.map(sneaker => {
+          if (sneaker.image.original) {
+            return <Card img={sneaker.image.original} text={sneaker.name} />;
+          }
+        })}
+      </div>
     </div>
   );
 }
