@@ -6,7 +6,7 @@ import jordan from "../../assets/jordan.avif";
 import { useNavigate } from "react-router-dom";
 function Category() {
   const navigate = useNavigate();
-  const handleNavigate = (input) => {
+  const handleNavigate = input => {
     navigate(`/products`);
   };
   return (
@@ -22,7 +22,7 @@ function Category() {
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
         <CategoryCard img={male} text="Men" />
         <CategoryCard img={kid} text="Kids" />
-        <CategoryCard img={jordan} text="Jordan" />{" "}
+        <CategoryCard img={jordan} text="Jordan" />
         <CategoryCard img={woman} text="Women" />
       </div>
     </div>
