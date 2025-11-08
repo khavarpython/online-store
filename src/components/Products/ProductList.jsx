@@ -46,7 +46,7 @@ function ProductList() {
         <>
           <div class="ml-10 mt-5">
             <Link to="/">
-              <button class="flex gap-0.5 items-center justify-center hover:bg-black hover:text-white px-3 rounded-lg">
+              <button class="flex gap-0.5 items-center justify-center hover:bg-black hover:text-white pr-3 rounded-lg">
                 <IoIosArrowBack /> Back
               </button>
             </Link>
@@ -56,14 +56,16 @@ function ProductList() {
             {sneakers.map(sneaker => {
               if (sneaker.image.original) {
                 return (
-                  <div class="hover:border-2" key={sneaker.id}>
-                    <img class="object-cover" src={sneaker.image.original} alt={sneaker.name} />
-                    <div class="ml-0.5 max-w-[95%]">
-                      <p>${sneaker.retailPrice}</p>
-                      <h4 class="capitalize">{sneaker.name}</h4>
-                      <p class="capitalize text-sm text-gray-500">{sneaker.brand}</p>
+                  <Link to={`/product/${sneaker.id}`} key={sneaker.id}>
+                    <div class="hover:border-2">
+                      <img class="object-cover" src={sneaker.image.original} alt={sneaker.name} />
+                      <div class="ml-0.5 max-w-[95%]">
+                        <p>${sneaker.retailPrice}</p>
+                        <h4 class="capitalize">{sneaker.name}</h4>
+                        <p class="capitalize text-sm text-gray-500">{sneaker.brand}</p>
+                      </div>
                     </div>
-                  </div>
+                  </Link>
                 );
               }
             })}
