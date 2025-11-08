@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Card from "./Card";
+import { Link } from "react-router-dom";
 
 function Cards() {
   const [sneakers, setSneakers] = useState([]);
@@ -31,7 +32,11 @@ function Cards() {
       <div class="flex object-cover gap-5 font-bold mb-7 overflow-auto">
         {sneakers.map(sneaker => {
           if (sneaker.image.original) {
-            return <Card img={sneaker.image.original} text={sneaker.name} />;
+            return (
+              <Link to={`/product/${sneaker.id}`} key={sneaker.id}>
+                <Card img={sneaker.image.original} text={sneaker.name} />
+              </Link>
+            );
           }
         })}
       </div>
