@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Loading from "../Loading";
+import { IoIosArrowBack } from "react-icons/io";
 
 function ProductList() {
   const [sneakers, setSneakers] = useState([]);
@@ -12,9 +13,8 @@ function ProductList() {
     let url;
     if (param.postId === undefined) {
       url = "https://the-sneaker-database.p.rapidapi.com/sneakers?limit=10";
-    } else if (param.postId == "JORDAN") {
-      url =
-        "https://the-sneaker-database.p.rapidapi.com/sneakers?limit=10&brand=AIR%20JORDAN";
+    } else if (param.postId == "Jordan") {
+      url = "https://the-sneaker-database.p.rapidapi.com/sneakers?limit=10&brand=AIR%20JORDAN";
     } else {
       url = `https://the-sneaker-database.p.rapidapi.com/sneakers?limit=10&gender=${param.postId}`;
     }
@@ -45,25 +45,23 @@ function ProductList() {
       ) : (
         <>
           <div class="ml-10 mt-5">
-            <Link to="/"> Back</Link>
+            <Link to="/">
+              <button class="flex gap-0.5 items-center justify-center hover:bg-black hover:text-white px-3 rounded-lg">
+                <IoIosArrowBack /> Back
+              </button>
+            </Link>
             <h1 class="text-4xl capitalize"> Shoes</h1>
           </div>
           <div class="grid grid-cols-2 sm:grid-cols-3 gap-y-5 max-w-6xl mx-auto my-5">
-            {sneakers.map((sneaker) => {
+            {sneakers.map(sneaker => {
               if (sneaker.image.original) {
                 return (
                   <div class="hover:border-2" key={sneaker.id}>
-                    <img
-                      class="object-cover"
-                      src={sneaker.image.original}
-                      alt={sneaker.name}
-                    />
+                    <img class="object-cover" src={sneaker.image.original} alt={sneaker.name} />
                     <div class="ml-0.5 max-w-[95%]">
                       <p>${sneaker.retailPrice}</p>
                       <h4 class="capitalize">{sneaker.name}</h4>
-                      <p class="capitalize text-sm text-gray-500">
-                        {sneaker.brand}
-                      </p>
+                      <p class="capitalize text-sm text-gray-500">{sneaker.brand}</p>
                     </div>
                   </div>
                 );
