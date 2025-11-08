@@ -11,19 +11,19 @@ function Header() {
   return (
     <nav class="flex w-full h-20 justify-between items-center bg-black text-white ">
       <div class="ml-5 flex justify-between  ">
-        <img src={logo} alt="Logo" class="w-20" />
+        <img src={logo} alt="Logo" class="w-15" />
       </div>
       <div class="hidden sm:flex text-lg ml-[13%] md:ml-[10%] lg:ml-[8%] md:text-xl gap-4">
-        <a class="cursor-pointer hover:underline hover:text-[1.5rem]" onClick={() => handleNavigate("MEN")}>
+        <a class="cursor-pointer hover:underline hover:text-[1.5rem]" onClick={() => handleNavigate("Men")}>
           Men
         </a>
-        <a class="cursor-pointer hover:underline hover:text-[1.5rem]" onClick={() => handleNavigate("WOMEN")}>
+        <a class="cursor-pointer hover:underline hover:text-[1.5rem]" onClick={() => handleNavigate("Women")}>
           Women
         </a>
-        <a class="cursor-pointer hover:underline hover:text-[1.5rem]" onClick={() => handleNavigate("KIDS")}>
+        <a class="cursor-pointer hover:underline hover:text-[1.5rem]" onClick={() => handleNavigate("Kids")}>
           Kids
         </a>
-        <a class="cursor-pointer hover:underline hover:text-[1.5rem]" onClick={() => handleNavigate("JORDAN")}>
+        <a class="cursor-pointer hover:underline hover:text-[1.5rem]" onClick={() => handleNavigate("Jordan")}>
           Jordan
         </a>
       </div>
