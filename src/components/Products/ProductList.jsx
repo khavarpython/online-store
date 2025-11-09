@@ -11,13 +11,18 @@ function ProductList() {
   useEffect(() => {
     setLoading(true);
     let url;
+    console.log(param);
+
     if (param.postId === undefined) {
       url = "https://the-sneaker-database.p.rapidapi.com/sneakers?limit=10";
     } else if (param.postId == "Jordan") {
       url = "https://the-sneaker-database.p.rapidapi.com/sneakers?limit=10&brand=AIR%20JORDAN";
-    } else {
+    } else if (param.postId == "Men" || param.postId == "Women" || param.postId == "Kids") {
       url = `https://the-sneaker-database.p.rapidapi.com/sneakers?limit=10&gender=${param.postId}`;
+    } else {
+      url = `https://the-sneaker-database.p.rapidapi.com/search?limit=100&query=${param.postId}`;
     }
+
     const options = {
       method: "GET",
       headers: {
@@ -44,7 +49,7 @@ function ProductList() {
         <Loading />
       ) : (
         <>
-          <div class="ml-10 mt-5">
+          <div class="ml-10 mt-5 w-fit">
             <Link to="/">
               <button class="flex gap-0.5 items-center justify-center hover:bg-black hover:text-white pr-3 rounded-lg">
                 <IoIosArrowBack /> Back
@@ -54,14 +59,15 @@ function ProductList() {
           </div>
           <div class="grid grid-cols-2 sm:grid-cols-3 gap-y-5 max-w-6xl mx-auto my-5">
             {sneakers.map(sneaker => {
-              if (sneaker.image.original) {
+              if (sneaker.image.original && sneaker.releaseYear > 0 && sneaker.retailPrice > 0) {
                 return (
                   <Link to={`/product/${sneaker.id}`} key={sneaker.id}>
                     <div class="hover:border-2">
+                      <div class="capitalize ml-auto mt-2 mr-2 w-fit bg-black text-white px-2 rounded-sm">{sneaker.gender}</div>
                       <img class="object-cover" src={sneaker.image.original} alt={sneaker.name} />
                       <div class="ml-0.5 max-w-[95%]">
                         <p>${sneaker.retailPrice}</p>
-                        <h4 class="capitalize">{sneaker.name}</h4>
+                        <h4 class="capitalize">{sneaker.silhouette}</h4>
                         <p class="capitalize text-sm text-gray-500">{sneaker.brand}</p>
                       </div>
                     </div>
