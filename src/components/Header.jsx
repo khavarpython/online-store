@@ -1,17 +1,29 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { FaShoppingCart } from "react-icons/fa";
+import { useRef } from "react";
 
 function Header() {
   const navigate = useNavigate();
+  const searchRef = useRef(null);
+
   const handleNavigate = input => {
     navigate(`/products/${input}`);
+  };
+
+  const handleSearch = () => {
+    preventDefault();
+    let enc = encodeURIComponent(searchRef.current.value);
+    console.log(enc);
+    navigate(`/products/${enc}`);
   };
 
   return (
     <nav class="flex w-full h-20 justify-between items-center bg-black text-white ">
       <div class="ml-5 flex justify-between  ">
-        <img src={logo} alt="Logo" class="w-15" />
+        <Link to="/">
+          <img src={logo} alt="Logo" class="w-15" />
+        </Link>
       </div>
       <div class="hidden sm:flex text-lg ml-[13%] md:ml-[10%] lg:ml-[8%] md:text-xl gap-4">
         <a class="cursor-pointer hover:underline hover:text-[1.5rem]" onClick={() => handleNavigate("Men")}>
@@ -27,9 +39,15 @@ function Header() {
           Jordan
         </a>
       </div>
+
       <div class="flex mr-5 gap-2">
-        <input class="w-40 h-7 bg-white text-gray-700 " type="text" placeholder=" Search" />
-        <FaShoppingCart class="size-6" />
+        <form onSubmit={handleSearch}>
+          <input class="w-40 h-7 bg-white text-gray-700 " type="search" placeholder=" Search" ref={searchRef} />
+        </form>
+
+        <Link to="/cart">
+          <FaShoppingCart class="size-6" />{" "}
+        </Link>
       </div>
     </nav>
   );
