@@ -30,8 +30,9 @@ function Product() {
         setSneakers(result.results);
 
         if (result.results) {
-          let encName = encodeURIComponent(result.results[0].name);
-          url = `https://the-sneaker-database.p.rapidapi.com/sneakers?limit=10&gender=${result.results[0].gender}&name=${encName}`;
+          let encSil = encodeURIComponent(result.results[0].silhouette);
+          let encBrand = encodeURIComponent(result.results[0].brand);
+          url = `https://the-sneaker-database.p.rapidapi.com/sneakers?limit=100&gender=${result.results[0].gender}&silhouette=${encSil}&brand=${encBrand}`;
           const colResponse = await fetch(url, options);
           const colResult = await colResponse.json();
           setColors(colResult.results);
@@ -64,7 +65,7 @@ function Product() {
             </div>
 
             <div class=" w-xl ">
-              <h1>{sneaker.name}</h1>
+              <h1>{sneaker.silhouette}</h1>
               <h2 class="capitalize">{sneaker.gender} Shoes</h2>
               <h3>${sneaker.retailPrice}</h3>
 
@@ -91,6 +92,7 @@ function Product() {
               <p>{sneaker.story} </p>
             </div>
           </div>
+
           <Footer />
         </>
       )}
