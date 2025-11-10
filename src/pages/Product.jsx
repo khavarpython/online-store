@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { CartContext } from "../context/CartContext";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-
+import { shoeSizes } from "../components/Product/sizeData";
 import { IoIosArrowBack } from "react-icons/io";
 import { Link, useParams } from "react-router-dom";
 import Loading from "../components/Loading";
@@ -10,7 +11,15 @@ function Product() {
   const [sneakers, setSneakers] = useState([]);
   const [colors, setColors] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [size, setSize] = useState("");
+  const { cartItems, addToCart } = useContext(CartContext);
   let param = useParams();
+
+  const decodeHTML = (html) => {
+    const txt = document.createElement("textarea");
+    txt.innerHTML = html;
+    return txt.value;
+  };
 
   useEffect(() => {
     setLoading(true);
@@ -46,6 +55,7 @@ function Product() {
   }, [param]);
 
   let sneaker = sneakers[0];
+
   return (
     <>
       {loading ? (
@@ -65,13 +75,13 @@ function Product() {
             </div>
 
             <div class=" w-xl ">
-              <h1>{sneaker.silhouette}</h1>
-              <h2 class="capitalize">{sneaker.gender} Shoes</h2>
-              <h3>${sneaker.retailPrice}</h3>
+              <h1 class="text-3xl">{sneaker.silhouette}</h1>
+              <h2 class="capitalize text-gray-500">{sneaker.gender} Shoes</h2>
+              <h3 class="mb-4 font-black">${sneaker.retailPrice}</h3>
 
               <h3>Colors</h3>
-              <div class="flex flex-wrap gap-2">
-                {colors.map(color => {
+              <div class="flex flex-wrap gap-2 mb-5">
+                {colors.map((color) => {
                   if (color.image.original) {
                     return (
                       <Link to={`/product/${color.id}`} key={color.id}>
@@ -82,14 +92,36 @@ function Product() {
                 })}
               </div>
 
-              <form class="max-w-lg">
+              <div class="max-w-lg">
                 <fieldset class="flex flex-wrap gap-2">
-                  <legend>Select Size</legend>
-                  <button class="border px-2 py-1 rounded-sm">30.5</button>
+                  <legend>Select Size (US)</legend>
+                  {shoeSizes[sneaker.gender].map((size, index) => {
+                    return (
+                      <button
+                        class="border w-12 px-2 py-1 rounded-sm  hover:border focus-within:border-2 focus-within:border-green-600"
+                        key={index}
+                        onClick={() => {
+                          setSize(size.size);
+                        }}>
+                        {size.size}
+                      </button>
+                    );
+                  })}
                 </fieldset>
-                <button type="submit">Add to Cart</button>
-              </form>
-              <p>{sneaker.story} </p>
+                <button
+                  class=" my-5 bg-black text-white px-3 py-2 rounded-md hover:bg-gray-700"
+                  onClick={() => {
+                    if (!size) {
+                      alert("Please Select a Size");
+                    } else {
+                      addToCart(sneaker, size);
+                      setSize("");
+                    }
+                  }}>
+                  Add to Cart
+                </button>
+              </div>
+              <p class="text-lg/relaxed">{decodeHTML(sneaker.story)} </p>
             </div>
           </div>
 
