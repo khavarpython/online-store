@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { IoIosArrowBack } from "react-icons/io";
 import Loading from "../Loading";
 
 function ProductList() {
   const [sneakers, setSneakers] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  const navigate = useNavigate();
   let param = useParams();
 
   useEffect(() => {
@@ -15,11 +15,11 @@ function ProductList() {
     console.log(param);
 
     if (param.postId === undefined) {
-      url = "https://the-sneaker-database.p.rapidapi.com/sneakers?limit=10";
+      url = "https://the-sneaker-database.p.rapidapi.com/sneakers?limit=50";
     } else if (param.postId == "Jordan") {
-      url = "https://the-sneaker-database.p.rapidapi.com/sneakers?limit=10&brand=AIR%20JORDAN";
+      url = "https://the-sneaker-database.p.rapidapi.com/sneakers?limit=50&brand=AIR%20JORDAN";
     } else if (param.postId == "Men" || param.postId == "Women" || param.postId == "Kids") {
-      url = `https://the-sneaker-database.p.rapidapi.com/sneakers?limit=10&gender=${param.postId}`;
+      url = `https://the-sneaker-database.p.rapidapi.com/sneakers?limit=50&gender=${param.postId}`;
     } else {
       url = `https://the-sneaker-database.p.rapidapi.com/search?limit=100&query=${param.postId}`;
     }
@@ -52,11 +52,14 @@ function ProductList() {
       ) : (
         <>
           <div class="ml-10 mt-5 w-fit">
-            <Link to="/">
-              <button class="flex gap-0.5 items-center justify-center hover:bg-black hover:text-white pr-3 rounded-lg">
-                <IoIosArrowBack /> Back
-              </button>
-            </Link>
+            <button
+              class="flex gap-0.5 items-center justify-center hover:bg-black hover:text-white px-3 py-2 rounded-lg mb-2"
+              onClick={() => {
+                navigate(-1);
+              }}>
+              <IoIosArrowBack /> Back
+            </button>
+
             <h1 class="text-4xl capitalize"> Shoes</h1>
           </div>
 
