@@ -10,7 +10,7 @@ function Category() {
     navigate(`/products`);
   };
   return (
-    <div class="mx-8 mb-12">
+    <div class="mx-5 mb-12">
       <h2
         class="text-4xl font- mb-5 font-serif font-black "
         onClick={() => {
@@ -19,11 +19,11 @@ function Category() {
       >
         Shop Now
       </h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+      <div class="grid grid-cols-2 md:grid-cols-4  gap-3 md:gap-5">
         <CategoryCard img={male} text="Men" />
+        <CategoryCard img={woman} text="Women" />
         <CategoryCard img={kid} text="Kids" />
         <CategoryCard img={jordan} text="Jordan" />
-        <CategoryCard img={woman} text="Women" />
       </div>
     </div>
   );

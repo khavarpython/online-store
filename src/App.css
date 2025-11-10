@@ -4,3 +4,14 @@
   box-sizing: border-box;
   font-family: "Helvetica Now MT Text", sans-serif;
 }
+
+html {
+  overflow: hidden;
+  height: 100%;
+}
+
+body {
+  overflow: auto;
+  height: 100%;
+  overscroll-behavior: none;
+}
