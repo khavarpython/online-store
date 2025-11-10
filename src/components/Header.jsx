@@ -1,13 +1,15 @@
 import { Link, useNavigate } from "react-router-dom";
-import logo from "../assets/logo.png";
 import { FaShoppingCart } from "react-icons/fa";
-import { useRef } from "react";
+import { useContext, useRef } from "react";
+import { CartContext } from "../context/CartContext";
+import logo from "../assets/logo.png";
 
 function Header() {
+  const { cartItems } = useContext(CartContext);
   const navigate = useNavigate();
   const searchRef = useRef(null);
 
-  const handleNavigate = input => {
+  const handleNavigate = (input) => {
     navigate(`/products/${input}`);
   };
 
@@ -45,8 +47,9 @@ function Header() {
           <input class="w-40 h-7 bg-white text-gray-700 " type="search" placeholder=" Search" ref={searchRef} />
         </form>
 
-        <Link to="/cart">
-          <FaShoppingCart class="size-6" />{" "}
+        <Link to="/cart" class="flex">
+          <p>{cartItems.length}</p>
+          <FaShoppingCart class="size-6" />
         </Link>
       </div>
     </nav>

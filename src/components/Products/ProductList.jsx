@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import Loading from "../Loading";
 import { IoIosArrowBack } from "react-icons/io";
+import Loading from "../Loading";
 
 function ProductList() {
   const [sneakers, setSneakers] = useState([]);
   const [loading, setLoading] = useState(true);
 
   let param = useParams();
+
   useEffect(() => {
     setLoading(true);
     let url;
@@ -30,6 +31,7 @@ function ProductList() {
         "x-rapidapi-host": import.meta.env.VITE_RAPID_HOST,
       },
     };
+
     async function fetchSneaker() {
       try {
         const response = await fetch(url, options);
@@ -57,14 +59,18 @@ function ProductList() {
             </Link>
             <h1 class="text-4xl capitalize"> Shoes</h1>
           </div>
+
           <div class="grid grid-cols-2 sm:grid-cols-3 gap-y-5 max-w-6xl mx-auto my-5">
-            {sneakers.map(sneaker => {
+            {sneakers.map((sneaker) => {
               if (sneaker.image.original && sneaker.releaseYear > 0 && sneaker.retailPrice > 0) {
                 return (
                   <Link to={`/product/${sneaker.id}`} key={sneaker.id}>
                     <div class="hover:border-2">
-                      <div class="capitalize ml-auto mt-2 mr-2 w-fit bg-black text-white px-2 rounded-sm">{sneaker.gender}</div>
+                      <div class="capitalize ml-auto mt-2 mr-2 w-fit bg-black text-white px-2 rounded-sm">
+                        {sneaker.gender}
+                      </div>
                       <img class="object-cover" src={sneaker.image.original} alt={sneaker.name} />
+
                       <div class="ml-0.5 max-w-[95%]">
                         <p>${sneaker.retailPrice}</p>
                         <h4 class="capitalize">{sneaker.silhouette}</h4>

@@ -4,22 +4,23 @@ import woman from "../../assets/woman.webp";
 import kid from "../../assets/kid.jpg";
 import jordan from "../../assets/jordan.avif";
 import { useNavigate } from "react-router-dom";
+
 function Category() {
   const navigate = useNavigate();
-  const handleNavigate = input => {
+  const handleNavigate = (input) => {
     navigate(`/products`);
   };
+
   return (
     <div class="mx-5 mb-12">
       <h2
         class="text-4xl font- mb-5 font-serif font-black "
         onClick={() => {
           handleNavigate();
-        }}
-      >
+        }}>
         Shop Now
       </h2>
-      <div class="grid grid-cols-2 md:grid-cols-4  gap-3 md:gap-5">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-5">
         <CategoryCard img={male} text="Men" />
         <CategoryCard img={woman} text="Women" />
         <CategoryCard img={kid} text="Kids" />
