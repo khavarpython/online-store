@@ -1,24 +1,28 @@
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { IoIosArrowBack } from "react-icons/io";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Footer from "../components/Footer";
+import Header from "../components/Header";
 
 function Cart() {
   const { cartItems, removeFromCart, clearCart, getCartTotal } = useContext(CartContext);
+  const navigate = useNavigate();
 
   return (
     <>
       <Header />
       <div class="flex flex-col sm:flex-row justify-around min-h-80 mx-10 md:mx-50 gap-5 mt-10 mb-10">
         <div class="w-full pb-5 ">
-          <Link to="/">
-            <button class="flex gap-0.5 items-center px-2 py-2 justify-center hover:bg-black hover:text-white pr-3 rounded-xl">
-              <IoIosArrowBack /> Back to Shopping
-            </button>
-          </Link>
+          <button
+            class="flex gap-0.5 items-center justify-center hover:bg-black hover:text-white px-3 py-2 rounded-lg"
+            onClick={() => {
+              navigate(-1);
+            }}>
+            <IoIosArrowBack /> Back to Shopping
+          </button>
+
           <h1 class="text-3xl"> Cart</h1>
           {cartItems.map((item) => {
             console.log(item);
