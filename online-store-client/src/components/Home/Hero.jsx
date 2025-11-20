@@ -13,7 +13,7 @@ function Hero() {
         class="absolute inset-0 w-full h-full object-cover"
         disablePictureInPicture
         loop="loop"
-        autoplay="autoplay"
+        autoPlay="autoplay"
         muted>
         <source src={hero_video} type="video/mp4"></source>
         Your browser does not support the video tag.

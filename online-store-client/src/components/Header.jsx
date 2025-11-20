@@ -16,7 +16,6 @@ function Header() {
   const handleSearch = (e) => {
     e.preventDefault();
     let enc = encodeURIComponent(searchRef.current.value);
-    console.log(enc);
     navigate(`/products/${enc}`);
   };
 
@@ -24,7 +23,7 @@ function Header() {
     <nav class="flex w-full h-20 justify-between items-center bg-black text-white ">
       <div class="ml-5 flex justify-between">
         <Link to="/">
-          <img src={logo} alt="Logo" class="w-15 hover:w-20" />
+          <img src={logo} alt="Logo" class="w-15 hover:w-16" />
         </Link>
       </div>
       <div class="hidden sm:flex text-lg ml-[13%] md:ml-[10%] lg:ml-[8%] md:text-xl gap-4">
