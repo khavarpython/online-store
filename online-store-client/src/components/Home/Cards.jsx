@@ -18,9 +18,9 @@ function Cards() {
   }, []);
 
   return (
-    <div class="flex flex-col my-20">
-      <h2 class="self-center text-4xl font-black">Popular Shoes</h2>
-      <div class="flex object-cover gap-5 font-bold mb-7 overflow-auto">
+    <div className="flex flex-col my-20">
+      <h2 className="self-center text-4xl font-black">Popular Shoes</h2>
+      <div className="flex object-cover gap-5 font-bold mb-7 overflow-auto">
         {sneakers.map((sneaker) => {
           if (sneaker.image.original) {
             return (

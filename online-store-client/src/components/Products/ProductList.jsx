@@ -41,33 +41,33 @@ function ProductList() {
         <Loading />
       ) : (
         <>
-          <div class="ml-10 mt-5 w-fit">
+          <div className="ml-10 mt-5 w-fit">
             <button
-              class="flex gap-0.5 items-center justify-center hover:bg-black hover:text-white px-3 py-2 rounded-lg mb-2"
+              className="flex gap-0.5 items-center justify-center hover:bg-black hover:text-white px-3 py-2 rounded-lg mb-2"
               onClick={() => {
                 navigate(-1);
               }}>
               <IoIosArrowBack /> Back
             </button>
 
-            <h1 class="text-4xl capitalize"> Shoes</h1>
+            <h1 className="text-4xl capitalize"> Shoes</h1>
           </div>
 
-          <div class="grid grid-cols-2 sm:grid-cols-3 gap-y-5 max-w-6xl mx-auto my-5">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-y-5 max-w-6xl mx-auto my-5">
             {sneakers.map((sneaker) => {
               if (sneaker.image.original && sneaker.releaseYear > 0 && sneaker.retailPrice > 0) {
                 return (
                   <Link to={`/product/${sneaker.id}`} key={sneaker.id}>
-                    <div class="hover:border-2">
-                      <div class="capitalize ml-auto mt-2 mr-2 w-fit bg-black text-white px-2 rounded-sm">
+                    <div className="hover:border-2">
+                      <div className="capitalize ml-auto mt-2 mr-2 w-fit bg-black text-white px-2 rounded-sm">
                         {sneaker.gender}
                       </div>
-                      <img class="object-cover" src={sneaker.image.original} alt={sneaker.name} />
+                      <img className="object-cover" src={sneaker.image.original} alt={sneaker.name} />
 
-                      <div class="ml-0.5 max-w-[95%]">
+                      <div className="ml-0.5 max-w-[95%]">
                         <p>${sneaker.retailPrice}</p>
-                        <h4 class="capitalize">{sneaker.silhouette}</h4>
-                        <p class="capitalize text-sm text-gray-500">{sneaker.brand}</p>
+                        <h4 className="capitalize">{sneaker.silhouette}</h4>
+                        <p className="capitalize text-sm text-gray-500">{sneaker.brand}</p>
                       </div>
                     </div>
                   </Link>

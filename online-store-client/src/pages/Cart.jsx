@@ -15,60 +15,60 @@ function Cart() {
     <>
       <Header />
 
-      <div class="flex flex-col sm:flex-row justify-around min-h-80 mx-10 md:mx-50 gap-5 mt-10 mb-10">
-        <div class="w-full pb-5">
+      <div className="flex flex-col sm:flex-row justify-around min-h-80 mx-10 md:mx-50 gap-5 mt-10 mb-10">
+        <div className="w-full pb-5">
           <button
-            class="flex gap-0.5 items-center hover:bg-black hover:text-white pr-3 py-2 rounded-lg"
+            className="flex gap-0.5 items-center hover:bg-black hover:text-white pr-3 py-2 rounded-lg"
             onClick={() => {
               navigate(-1);
             }}>
             <IoIosArrowBack /> Back to Shopping
           </button>
 
-          {itemsLength ? <h1 class="text-3xl"> Cart</h1> : <h1 class="text-3xl">Cart is empty</h1>}
+          {itemsLength ? <h1 className="text-3xl"> Cart</h1> : <h1 className="text-3xl">Cart is empty</h1>}
 
           {cartItems.map((item) => {
             return (
-              <div class="flex gap-2 border-t-2 border-t-gray-500 pt-2" key={item.id}>
-                <img src={item.image.original} class="max-w-32 md:max-w-64 max-h-auto"></img>
+              <div className="flex gap-2 border-t-2 border-t-gray-500 pt-2" key={item.id}>
+                <img src={item.image.original} className="max-w-32 md:max-w-64 max-h-auto"></img>
                 <div>
                   <h2>{item.name}</h2>
-                  <h2 class="capitalize">{item.gender}</h2>
+                  <h2 className="capitalize">{item.gender}</h2>
                   <h2>Quantity: {item.quantity}</h2>
                   <h2>Size {item.size}</h2>
                   <button
-                    class="my-auto"
+                    className="my-auto"
                     onClick={() => {
                       removeFromCart(item);
                     }}>
                     <FaRegTrashAlt />
                   </button>
                 </div>
-                <h3 class="sm:ml-auto w-fit ">${item.retailPrice}</h3>
+                <h3 className="sm:ml-auto w-fit ">${item.retailPrice}</h3>
               </div>
             );
           })}
         </div>
 
         {itemsLength ? (
-          <div class="w-sm">
-            <div class="flex justify-between">
+          <div className="w-sm">
+            <div className="flex justify-between">
               <h3>Subtotal</h3>
               <h3>$ {getCartTotal()}</h3>
             </div>
 
-            <div class="flex justify-between">
+            <div className="flex justify-between">
               <h3>Tax</h3>
               <h3>$ {getCartTotal() * 0.15}</h3>
             </div>
 
-            <div class="flex justify-between">
+            <div className="flex justify-between">
               <h3>Total</h3>
               <h3>$ {getCartTotal() + getCartTotal() * 0.15}</h3>
             </div>
 
             <button
-              class="block bg-black text-white px-2  py-0.5 rounded-md w-1/2 mx-auto mt-2 hover:bg-green-400"
+              className="block bg-black text-white px-2  py-0.5 rounded-md w-1/2 mx-auto mt-2 hover:bg-green-400"
               onClick={() => {
                 alert("No Payment Implementation");
               }}>
@@ -80,14 +80,14 @@ function Cart() {
 
       {itemsLength ? (
         <h3
-          class="text-black text-xl mx-auto w-fit mb-10 cursor-pointer hover:underline"
+          className="text-black text-xl mx-auto w-fit mb-10 cursor-pointer hover:underline"
           onClick={() => {
             clearCart();
           }}>
           Clear Cart
         </h3>
       ) : (
-        <div class="mb-25"></div>
+        <div className="mb-25"></div>
       )}
 
       <Footer />

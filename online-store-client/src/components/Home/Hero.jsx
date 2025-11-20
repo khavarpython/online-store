@@ -8,9 +8,9 @@ function Hero() {
   };
 
   return (
-    <div class="relative w-full h-screen">
+    <div className="relative w-full h-screen">
       <video
-        class="absolute inset-0 w-full h-full object-cover"
+        className="absolute inset-0 w-full h-full object-cover"
         disablePictureInPicture
         loop="loop"
         autoPlay="autoplay"
@@ -19,11 +19,11 @@ function Hero() {
         Your browser does not support the video tag.
       </video>
 
-      <div class="absolute bottom-0 left-0 right-0 pb-12 flex flex-col items-center text-white text-center ">
-        <h2 class="text-7xl font-extrabold">Online Store</h2>
-        <p class="text-sm">This website was designed by Khavar Facey</p>
+      <div className="absolute bottom-0 left-0 right-0 pb-12 flex flex-col items-center text-white text-center ">
+        <h2 className="text-7xl font-extrabold">Online Store</h2>
+        <p className="text-sm">This website was designed by Khavar Facey</p>
         <button
-          class="bg-white text-gray-700 px-5 py-1 rounded-xl mt-2 cursor-pointer hover:bg-gray-300"
+          className="bg-white text-gray-700 px-5 py-1 rounded-xl mt-2 cursor-pointer hover:bg-gray-300"
           onClick={() => {
             handleNavigate();
           }}>

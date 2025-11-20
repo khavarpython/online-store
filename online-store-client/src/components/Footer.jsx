@@ -1,19 +1,19 @@
 function Footer() {
   return (
-    <footer class="h-30  bg-black text-gray-200 text-xs md:text-sm  ">
-      <div class="flex text-center justify-around h-full ">
-        <ul class="self-center">
+    <footer className="h-30  bg-black text-gray-200 text-xs md:text-sm  ">
+      <div className="flex text-center justify-around h-full ">
+        <ul className="self-center">
           <li>Shoes</li>
           <li>Clothing</li>
           <li>Accessories</li>
         </ul>
-        <ul class="self-center">
+        <ul className="self-center">
           <li>New Arrivals</li>
           <li>Best Sellers</li>
           <li>Sale</li>
           <li>Collections</li>
         </ul>
-        <ul class="self-center">
+        <ul className="self-center">
           <li>About Us</li>
           <li>Contact</li>
           <li>FAQ</li>

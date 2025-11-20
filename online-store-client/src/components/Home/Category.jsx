@@ -12,15 +12,15 @@ function Category() {
   };
 
   return (
-    <div class="mx-5 mb-12">
+    <div className="mx-5 mb-12">
       <h2
-        class="text-4xl font- mb-5 font-serif font-black "
+        className="text-4xl font- mb-5 font-serif font-black "
         onClick={() => {
           handleNavigate();
         }}>
         Shop Now
       </h2>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-5">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-5">
         <CategoryCard img={male} text="Men" />
         <CategoryCard img={woman} text="Women" />
         <CategoryCard img={kid} text="Kids" />
