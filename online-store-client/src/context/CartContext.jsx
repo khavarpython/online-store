@@ -7,7 +7,6 @@ export const CartProvider = ({ children }) => {
     localStorage.getItem("cartItems") ? JSON.parse(localStorage.getItem("cartItems")) : []
   );
 
-  // Add to cart function
   const addToCart = (item, size) => {
     const isItemInCart = cartItems.find((cartItem) => cartItem.id === item.id && cartItem.size === size);
 
@@ -22,7 +21,6 @@ export const CartProvider = ({ children }) => {
     }
   };
 
-  // Remove from cart function
   const removeFromCart = (item) => {
     const isItemInCart = cartItems.find((cartItem) => cartItem.id === item.id && cartItem.size === item.size);
     if (isItemInCart.quantity === 1) {
@@ -38,22 +36,18 @@ export const CartProvider = ({ children }) => {
     }
   };
 
-  // Clear cart function
   const clearCart = () => {
     setCartItems([]);
   };
 
-  // Get cart total function
   const getCartTotal = () => {
     return cartItems.reduce((total, item) => total + item.retailPrice * item.quantity, 0);
   };
 
-  // Set cart in local storage effect
   useEffect(() => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
   }, [cartItems]);
 
-  // Get cart items from local storage effect
   useEffect(() => {
     const cartItems = localStorage.getItem("cartItems");
     if (cartItems) {
