@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Card from "./Card";
-import Loading from "../Loading";
 import { ThreeDot } from "react-loading-indicators";
 
 function Cards() {
@@ -13,7 +12,7 @@ function Cards() {
     fetch("http://localhost:5000/api/sneakers")
       .then((response) => response.json())
       .then((data) => {
-        setSneakers(data.results);
+        setSneakers(data);
         setLoading(false);
       })
       .catch((err) => {
@@ -33,10 +32,10 @@ function Cards() {
       ) : (
         <div className="flex object-cover gap-5 font-bold mb-7 overflow-auto">
           {sneakers.map((sneaker) => {
-            if (sneaker.image.original) {
+            if (sneaker) {
               return (
                 <Link to={`/product/${sneaker.id}`} key={sneaker.id}>
-                  <Card img={sneaker.image.original} text={sneaker.name} />
+                  <Card img={sneaker.image} text={sneaker.title} />
                 </Link>
               );
             }
