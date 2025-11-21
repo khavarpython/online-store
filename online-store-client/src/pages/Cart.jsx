@@ -11,6 +11,38 @@ function Cart() {
   const itemsLength = cartItems.length > 0;
   const navigate = useNavigate();
 
+  const makePayment = async () => {
+    try {
+      const body = {
+        products: cartItems,
+      };
+
+      const headers = {
+        "Content-Type": "application/json",
+      };
+
+      const response = await fetch("http://localhost:5000/stripe/pay", {
+        method: "POST",
+        headers: headers,
+        body: JSON.stringify(body),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const session = await response.json();
+
+      if (session.url) {
+        window.location.href = session.url;
+      } else {
+        console.error("No checkout URL returned");
+      }
+    } catch (error) {
+      console.error("Payment error:", error);
+    }
+  };
+
   return (
     <>
       <Header />
@@ -51,7 +83,7 @@ function Cart() {
         </div>
 
         {itemsLength ? (
-          <div className="w-sm">
+          <div className="w-sm mt-10 ml-5">
             <div className="flex justify-between">
               <h3>Subtotal</h3>
               <h3>$ {getCartTotal()}</h3>
@@ -70,7 +102,7 @@ function Cart() {
             <button
               className="block bg-black text-white px-2  py-0.5 rounded-md w-1/2 mx-auto mt-2 hover:bg-green-400"
               onClick={() => {
-                alert("No Payment Implementation");
+                makePayment();
               }}>
               Buy
             </button>
