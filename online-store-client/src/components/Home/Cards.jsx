@@ -18,7 +18,6 @@ function Cards() {
       .catch((err) => {
         setSneakers([]);
         setLoading(false);
-        console.log(err);
       });
   }, []);
 

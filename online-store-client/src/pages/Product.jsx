@@ -31,7 +31,6 @@ function Product() {
     fetch(`/api/product/?id=${id}`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         setSneaker(data);
         setLoading(false);
         // if (data) {
@@ -44,7 +43,6 @@ function Product() {
         // }
       })
       .catch((err) => {
-        console.log(err);
         setLoading(false);
       });
   }, [param]);

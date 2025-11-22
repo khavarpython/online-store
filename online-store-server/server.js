@@ -27,9 +27,7 @@ app.get("/api/sneakers", async (req, res) => {
     .then(function (response) {
       res.json(response.data.data);
     })
-    .catch(function (error) {
-      console.log(error);
-    });
+    .catch(function (error) {});
 });
 
 app.get("/api/sneakerlist", async (req, res) => {
@@ -44,8 +42,8 @@ app.get("/api/sneakerlist", async (req, res) => {
   } else if (type == "Men" || type == "Women" || type == "Kids") {
     url = `https://api.kicks.dev/v3/stockx/products?display[traits]&display[variants]&display[hidden_variants]&display[identifiers]&display[prices]&display[statistics]&query=&filters=%28product_type%20=%20%27sneakers%27%20AND%20gender%20=%20%27${type}%27%29%20&sort&page&limit&market&currency`;
   }
-  console.log(url);
-
+  console.log("API URL:", url);
+  debugInfo.apiUrl = url;
   var config = {
     method: "get",
     url: url,
@@ -58,9 +56,7 @@ app.get("/api/sneakerlist", async (req, res) => {
     .then(function (response) {
       res.json(response.data.data);
     })
-    .catch(function (error) {
-      console.log(error);
-    });
+    .catch(function (error) {});
 });
 
 app.get("/api/search", async (req, res) => {
@@ -78,9 +74,7 @@ app.get("/api/search", async (req, res) => {
     .then(function (response) {
       res.json(response.data.data);
     })
-    .catch(function (error) {
-      console.log(error);
-    });
+    .catch(function (error) {});
 });
 
 app.get("/api/product", async (req, res) => {
@@ -96,13 +90,9 @@ app.get("/api/product", async (req, res) => {
 
   axios(config)
     .then(function (response) {
-      res.status(200).json({ response });
-      console.log(response.data.data);
       res.json(response.data.data);
     })
-    .catch(function (error) {
-      console.log(error);
-    });
+    .catch(function (error) {});
 });
 
 app.get("/api/colors", (req, res) => {
