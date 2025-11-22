@@ -16,4 +16,4 @@ A modern, responsive sneaker e-commerce website built with React and Tailwind CS
 - **Styling**: Tailwind CSS
 - **State Management**: React Context API / useState
 
-[Cick Here to see the published website](https://khavar-shop.netlify.app/)
+[Cick Here to see the published website]([https://khavar-shop.netlify.app]/)
