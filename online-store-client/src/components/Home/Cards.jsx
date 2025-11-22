@@ -9,7 +9,7 @@ function Cards() {
 
   useEffect(() => {
     setLoading(true);
-    fetch("http://localhost:5000/api/sneakers")
+    fetch("/api/sneakers")
       .then((response) => response.json())
       .then((data) => {
         setSneakers(data);

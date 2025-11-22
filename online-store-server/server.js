@@ -5,7 +5,7 @@ const cors = require("cors");
 const app = express();
 
 const stripe = require("stripe")(process.env.STRIPE_SECRET);
-const auth = process.eventNames.API_KEY;
+const auth = process.env.API_KEY;
 
 app.use(cors());
 

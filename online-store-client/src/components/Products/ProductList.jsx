@@ -22,7 +22,7 @@ function ProductList() {
       type = param.postId;
     }
 
-    fetch(`http://localhost:5000/api/sneakerlist?type=${type}`)
+    fetch(`/api/sneakerlist?type=${type}`)
       .then((response) => response.json())
       .then((data) => {
         setSneakers(data);

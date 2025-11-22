@@ -28,7 +28,7 @@ function Product() {
     setLoading(true);
     let id = param.postId;
 
-    fetch(`http://localhost:5000/api/product/?id=${id}`)
+    fetch(`/api/product/?id=${id}`)
       .then((response) => response.json())
       .then((data) => {
         setSneaker(data);
