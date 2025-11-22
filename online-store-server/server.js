@@ -34,11 +34,11 @@ app.get("/api/sneakers", async (req, res) => {
 });
 
 app.get("/api/sneakerlist", async (req, res) => {
-  let type = req.query.type.toLowerCase();
+  let type = req.query.type;
   let url;
 
   if (type == "Men" || type == "Women" || type == "Kids") {
-    url = `https://api.kicks.dev/v3/stockx/products?display[traits]&display[variants]&display[hidden_variants]&display[identifiers]&display[prices]&display[statistics]&query=&filters=%28product_type%20=%20%27sneakers%27%20%29%20AND%20%28gender%20=%20%${type}%27%29&sort&page&limit=70&market&currency`;
+    url = `https://api.kicks.dev/v3/stockx/products?display[traits]&display[variants]&display[hidden_variants]&display[identifiers]&display[prices]&display[statistics]&query=&filters=%28product_type%20=%20%27sneakers%27%20AND%20gender%20=%20%27${type.toLowerCase()}%27%29&sort&page&limit=70&market&currency`;
   } else if (type == "jordan") {
     url =
       "https://api.kicks.dev/v3/stockx/products?display[traits]&display[variants]&display[hidden_variants]&display[identifiers]&display[prices]&display[statistics]&query=&filters=%28product_type%20=%20%27sneakers%27%20AND%20brand%20=%20%27Jordan%27%29%20&sort&page&limit=70&market&currency";
