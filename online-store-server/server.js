@@ -38,40 +38,21 @@ app.get("/api/sneakerlist", async (req, res) => {
   let type = req.query.type;
   let url;
 
-  if (type == "Men" || type == "Women" || type == "Kids") {
+  if (!type) {
+    url =
+      "https://api.kicks.dev/v3/stockx/products?display[traits]&display[variants]&display[hidden_variants]&display[identifiers]&display[prices]&display[statistics]&query=&filters=product_type%20=%20%27sneakers%27&sort&page&limit=50&market&currency";
+  } else if (type == "Men" || type == "Women" || type == "Kids") {
     url = `https://api.kicks.dev/v3/stockx/products?display[traits]&display[variants]&display[hidden_variants]&display[identifiers]&display[prices]&display[statistics]&query=&filters=%28product_type%20=%20%27sneakers%27%20AND%20gender%20=%20%27${type.toLowerCase()}%27%29&sort&page&limit=70&market&currency`;
   } else if (type == "jordan") {
     url =
       "https://api.kicks.dev/v3/stockx/products?display[traits]&display[variants]&display[hidden_variants]&display[identifiers]&display[prices]&display[statistics]&query=&filters=%28product_type%20=%20%27sneakers%27%20AND%20brand%20=%20%27Jordan%27%29%20&sort&page&limit=70&market&currency";
   } else {
-    url =
-      "https://api.kicks.dev/v3/stockx/products?display[traits]&display[variants]&display[hidden_variants]&display[identifiers]&display[prices]&display[statistics]&query=&filters=product_type%20=%20%27sneakers%27&sort&page&limit=50&market&currency";
+    url = `https://api.kicks.dev/v3/stockx/products?display[traits]&display[variants]&display[hidden_variants]&display[identifiers]&display[prices]&display[statistics]&query=${type}&filters=&sort&page&limit=70&market&currency`;
   }
 
   var config = {
     method: "get",
     url: url,
-    headers: {
-      Authorization: auth,
-    },
-  };
-
-  axios(config)
-    .then(function (response) {
-      res.json(response.data.data);
-    })
-    .catch(function (error) {
-      console.error("API Error:", error.message);
-      res.status(500).json({ error: "Failed to fetch data" });
-    });
-});
-
-app.get("/api/search", async (req, res) => {
-  let search = req.query.type;
-  console.log("Encoded search term:", search);
-  var config = {
-    method: "get",
-    url: `https://api.kicks.dev/v3/stockx/products?display[traits]&display[variants]&display[hidden_variants]&display[identifiers]&display[prices]&display[statistics]&query=${search}&filters=&sort&page&limit=70&market&currency`,
     headers: {
       Authorization: auth,
     },
