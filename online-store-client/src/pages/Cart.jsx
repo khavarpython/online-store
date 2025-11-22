@@ -21,7 +21,7 @@ function Cart() {
         "Content-Type": "application/json",
       };
 
-      const response = await fetch("/stripe/pay", {
+      const response = await fetch("/api/stripe/pay", {
         method: "POST",
         headers: headers,
         body: JSON.stringify(body),

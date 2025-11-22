@@ -94,7 +94,7 @@ app.get("/api/colors", (req, res) => {
   let sil = req.query.silhouette;
 });
 
-app.post("/stripe/pay", async (req, res) => {
+app.post("/api/stripe/pay", async (req, res) => {
   try {
     const { products } = req.body;
     const items = products.map((product) => ({
