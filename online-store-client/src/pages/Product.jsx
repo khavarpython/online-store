@@ -25,25 +25,22 @@ function Product() {
   };
 
   useEffect(() => {
+    console.log("Fetching product ID:", param.postId);
     setLoading(true);
     let id = param.postId;
 
-    fetch(`/api/product/?id=${id}`)
-      .then((response) => response.json())
+    fetch(`${import.meta.env.VITE_API_URL}/api/product?id=${id}`)
+      .then((response) => {
+        console.log("Response status:", response.status);
+        return response.json();
+      })
       .then((data) => {
+        console.log("Product data received:", data);
         setSneaker(data);
         setLoading(false);
-        // if (data) {
-        //   fetch()
-        //     .then((response) => response.json())
-        //     .then((coldata) => {
-        //       setColors(data);
-        //       setLoading(false);
-        //     });
-        // }
       })
       .catch((err) => {
-        console.error("Error:", err.message);
+        console.error("Error:", err);
         setLoading(false);
       });
   }, [param.postId]);
