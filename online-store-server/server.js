@@ -37,13 +37,14 @@ app.get("/api/sneakerlist", async (req, res) => {
   let type = req.query.type.toLowerCase();
   let url;
 
-  url =
-    "https://api.kicks.dev/v3/stockx/products?display[traits]&display[variants]&display[hidden_variants]&display[identifiers]&display[prices]&display[statistics]&query=&filters=product_type%20=%20%27sneakers%27&sort&page&limit=50&market&currency";
-  if (type == "jordan") {
+  if (type == "Men" || type == "Women" || type == "Kids") {
+    url = `https://api.kicks.dev/v3/stockx/products?display[traits]&display[variants]&display[hidden_variants]&display[identifiers]&display[prices]&display[statistics]&query=&filters=%28product_type%20=%20%27sneakers%27%20%29%20AND%20%28gender%20=%20%${type}%27%29&sort&page&limit=70&market&currency`;
+  } else if (type == "jordan") {
     url =
       "https://api.kicks.dev/v3/stockx/products?display[traits]&display[variants]&display[hidden_variants]&display[identifiers]&display[prices]&display[statistics]&query=&filters=%28product_type%20=%20%27sneakers%27%20AND%20brand%20=%20%27Jordan%27%29%20&sort&page&limit=70&market&currency";
-  } else if (type == "Men" || type == "Women" || type == "Kids") {
-    url = `https://api.kicks.dev/v3/stockx/products?display[traits]&display[variants]&display[hidden_variants]&display[identifiers]&display[prices]&display[statistics]&query=&filters=%28product_type%20=%20%27sneakers%27%20%29%20AND%20%28gender%20=%20%${type}%27%29&sort&page&limit=70&market&currency`;
+  } else {
+    url =
+      "https://api.kicks.dev/v3/stockx/products?display[traits]&display[variants]&display[hidden_variants]&display[identifiers]&display[prices]&display[statistics]&query=&filters=product_type%20=%20%27sneakers%27&sort&page&limit=50&market&currency";
   }
 
   console.log("API URL:", url);

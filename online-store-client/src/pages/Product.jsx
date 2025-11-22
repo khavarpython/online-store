@@ -29,7 +29,7 @@ function Product() {
     setLoading(true);
     let id = param.postId;
 
-    fetch(`${import.meta.env.VITE_API_URL}/api/product?id=${id}`)
+    fetch(`/api/product?id=${id}`)
       .then((response) => {
         console.log("Response status:", response.status);
         return response.json();
