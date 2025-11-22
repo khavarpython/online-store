@@ -43,7 +43,6 @@ app.get("/api/sneakerlist", async (req, res) => {
     url = `https://api.kicks.dev/v3/stockx/products?display[traits]&display[variants]&display[hidden_variants]&display[identifiers]&display[prices]&display[statistics]&query=&filters=%28product_type%20=%20%27sneakers%27%20AND%20gender%20=%20%27${type}%27%29%20&sort&page&limit&market&currency`;
   }
   console.log("API URL:", url);
-  debugInfo.apiUrl = url;
   var config = {
     method: "get",
     url: url,
