@@ -11,6 +11,9 @@ app.use(cors());
 
 app.use(express.json());
 
+app.get("/", (req, res) => {
+  res.json({ message: "Sneaker API is running" });
+});
 app.get("/api/sneakers", async (req, res) => {
   var config = {
     method: "get",
