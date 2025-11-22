@@ -85,7 +85,7 @@ app.get("/api/search", async (req, res) => {
 
 app.get("/api/product", async (req, res) => {
   let id = req.query.id;
-
+  res.status(200).json({ id });
   var config = {
     method: "get",
     url: `https://api.kicks.dev/v3/stockx/products/${id}?display[traits]&display[variants]&display[hidden_variants]&display[identifiers]&display[prices]&display[statistics]&market&currency`,
@@ -96,6 +96,7 @@ app.get("/api/product", async (req, res) => {
 
   axios(config)
     .then(function (response) {
+      res.status(200).json({ response });
       console.log(response.data.data);
       res.json(response.data.data);
     })
