@@ -43,9 +43,10 @@ function Product() {
         // }
       })
       .catch((err) => {
+        console.error("Error:", err.message);
         setLoading(false);
       });
-  }, [param]);
+  }, [param.postId]);
 
   return (
     <>
