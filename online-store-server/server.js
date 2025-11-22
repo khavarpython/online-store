@@ -14,6 +14,7 @@ app.use(express.json());
 app.get("/", (req, res) => {
   res.json({ message: "Sneaker API is running" });
 });
+
 app.get("/api/sneakers", async (req, res) => {
   var config = {
     method: "get",
@@ -47,7 +48,6 @@ app.get("/api/sneakerlist", async (req, res) => {
       "https://api.kicks.dev/v3/stockx/products?display[traits]&display[variants]&display[hidden_variants]&display[identifiers]&display[prices]&display[statistics]&query=&filters=product_type%20=%20%27sneakers%27&sort&page&limit=50&market&currency";
   }
 
-  console.log("API URL:", url);
   var config = {
     method: "get",
     url: url,
@@ -67,11 +67,11 @@ app.get("/api/sneakerlist", async (req, res) => {
 });
 
 app.get("/api/search", async (req, res) => {
-  let search = encodeURIComponent(req.query.type);
-
+  let search = req.query.type;
+  console.log("Encoded search term:", search);
   var config = {
     method: "get",
-    url: `https://api.kicks.dev/v3/stockx/products?display[traits]&display[variants]&display[hidden_variants]&display[identifiers]&display[prices]&display[statistics]&query=${search}&filters=product_type%20=%20%27sneakers%27&sort&page&limit&market&currency`,
+    url: `https://api.kicks.dev/v3/stockx/products?display[traits]&display[variants]&display[hidden_variants]&display[identifiers]&display[prices]&display[statistics]&query=${search}&filters=&sort&page&limit=70&market&currency`,
     headers: {
       Authorization: auth,
     },
