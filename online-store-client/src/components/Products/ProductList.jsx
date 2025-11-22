@@ -11,22 +11,21 @@ function ProductList() {
 
   useEffect(() => {
     setLoading(true);
-    let url;
+    let type;
 
     if (param.postId === undefined) {
-      url = "http://localhost:5000/api/sneakerlist";
     } else if (param.postId == "Jordan") {
-      url = "http://localhost:5000/api/sneakerlist?type=jordan";
+      type = "jordan";
     } else if (param.postId == "Men" || param.postId == "Women" || param.postId == "Kids") {
-      url = `http://localhost:5000/api/sneakerlist?type=${param.postId}`;
+      type = param.postId;
     } else {
-      url = `http://localhost:5000/api/search?search=${param.postId}`;
+      type = param.postId;
     }
 
-    fetch(url)
+    fetch(`http://localhost:5000/api/sneakerlist?type=${type}`)
       .then((response) => response.json())
       .then((data) => {
-        setSneakers(data.results);
+        setSneakers(data);
         setLoading(false);
       })
       .catch((err) => {
@@ -55,18 +54,17 @@ function ProductList() {
 
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-y-5 max-w-6xl mx-auto my-5">
             {sneakers.map((sneaker) => {
-              if (sneaker.image.original && sneaker.releaseYear > 0 && sneaker.retailPrice > 0) {
+              if (sneaker) {
                 return (
                   <Link to={`/product/${sneaker.id}`} key={sneaker.id}>
                     <div className="hover:border-2">
                       <div className="capitalize ml-auto mt-2 mr-2 w-fit bg-black text-white px-2 rounded-sm">
                         {sneaker.gender}
                       </div>
-                      <img className="object-cover" src={sneaker.image.original} alt={sneaker.name} />
-
+                      <img className="object-cover max-w-[80%] mx-auto" src={sneaker.image} alt={sneaker.title} />
                       <div className="ml-0.5 max-w-[95%]">
-                        <p>${sneaker.retailPrice}</p>
-                        <h4 className="capitalize">{sneaker.silhouette}</h4>
+                        <p>${Math.round(sneaker.avg_price)}</p>
+                        <h4 className="capitalize">{sneaker.title}</h4>
                         <p className="capitalize text-sm text-gray-500">{sneaker.brand}</p>
                       </div>
                     </div>

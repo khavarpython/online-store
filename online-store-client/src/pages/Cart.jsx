@@ -62,9 +62,9 @@ function Cart() {
           {cartItems.map((item) => {
             return (
               <div className="flex gap-2 border-t-2 border-t-gray-500 pt-2" key={item.id}>
-                <img src={item.image.original} className="max-w-32 md:max-w-64 max-h-auto"></img>
+                <img src={item.image} className="max-w-32 md:max-w-64 max-h-auto"></img>
                 <div>
-                  <h2>{item.name}</h2>
+                  <h2>{item.title}</h2>
                   <h2 className="capitalize">{item.gender}</h2>
                   <h2>Quantity: {item.quantity}</h2>
                   <h2>Size {item.size}</h2>
@@ -76,7 +76,7 @@ function Cart() {
                     <FaRegTrashAlt />
                   </button>
                 </div>
-                <h3 className="sm:ml-auto w-fit ">${item.retailPrice}</h3>
+                <h3 className="sm:ml-auto w-fit ">${Math.round(item.avg_price)}</h3>
               </div>
             );
           })}

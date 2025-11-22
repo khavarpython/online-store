@@ -5,7 +5,7 @@ const cors = require("cors");
 const app = express();
 
 const stripe = require("stripe")(process.env.STRIPE_SECRET);
-const auth = "";
+const auth = process.eventNames.API_KEY;
 
 app.use(cors());
 
@@ -14,7 +14,7 @@ app.use(express.json());
 app.get("/api/sneakers", async (req, res) => {
   var config = {
     method: "get",
-    url: "//api.kicks.dev/v3/stockx/products?display[traits]&display[variants]&display[hidden_variants]&display[identifiers]&display[prices]&display[statistics]&filters=product_type%20=%20%27sneakers%27&sort&page&limit=20&market&currency",
+    url: "https://api.kicks.dev/v3/stockx/products?display[traits]&display[variants]&display[hidden_variants]&display[identifiers]&display[prices]&display[statistics]&filters=product_type%20=%20%27sneakers%27&sort&page&limit=20&market&currency",
     headers: {
       Authorization: auth,
     },
@@ -30,18 +30,18 @@ app.get("/api/sneakers", async (req, res) => {
 });
 
 app.get("/api/sneakerlist", async (req, res) => {
-  let type = req.query.type;
+  let type = req.query.type.toLowerCase();
   let url;
 
-  if (type == undefined) {
-    url =
-      "https://api.kicks.dev/v3/stockx/products?display[traits]&display[variants]&display[hidden_variants]&display[identifiers]&display[prices]&display[statistics]&filters=product_type%20=%20%27sneakers%27&sort&page&limit=70&market&currency";
-  } else if (type == "jordan") {
+  url =
+    "https://api.kicks.dev/v3/stockx/products?display[traits]&display[variants]&display[hidden_variants]&display[identifiers]&display[prices]&display[statistics]&query=&filters=product_type%20=%20%27sneakers%27&sort&page&limit=50&market&currency";
+  if (type == "jordan") {
     url =
       "https://api.kicks.dev/v3/stockx/products?display[traits]&display[variants]&display[hidden_variants]&display[identifiers]&display[prices]&display[statistics]&query=&filters=%28product_type%20=%20%27sneakers%27%20AND%20brand%20=%20%27Jordan%27%29%20&sort&page&limit=70&market&currency";
   } else if (type == "Men" || type == "Women" || type == "Kids") {
     url = `https://api.kicks.dev/v3/stockx/products?display[traits]&display[variants]&display[hidden_variants]&display[identifiers]&display[prices]&display[statistics]&query=&filters=%28product_type%20=%20%27sneakers%27%20AND%20gender%20=%20%27${type}%27%29%20&sort&page&limit&market&currency`;
   }
+  console.log(url);
 
   var config = {
     method: "get",
@@ -61,7 +61,7 @@ app.get("/api/sneakerlist", async (req, res) => {
 });
 
 app.get("/api/search", async (req, res) => {
-  let search = encodeURIComponent(req.query.search);
+  let search = encodeURIComponent(req.query.type);
 
   var config = {
     method: "get",
@@ -93,6 +93,7 @@ app.get("/api/product", async (req, res) => {
 
   axios(config)
     .then(function (response) {
+      console.log(response.data.data);
       res.json(response.data.data);
     })
     .catch(function (error) {
@@ -113,10 +114,10 @@ app.post("/stripe/pay", async (req, res) => {
       price_data: {
         currency: "usd",
         product_data: {
-          name: product.name,
-          images: [product.image.original],
+          name: product.title,
+          images: [product.image],
         },
-        unit_amount: Math.round(product.retailPrice * 100),
+        unit_amount: Math.round(product.avg_price * 100),
       },
       quantity: product.quantity,
     }));

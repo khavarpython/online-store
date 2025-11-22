@@ -18,7 +18,6 @@ export const shoeSizes = {
     { size: "13.5", inches: 11.875, cm: 30.2 },
     { size: "14", inches: 12.0, cm: 30.5 },
     { size: "15", inches: 12.1875, cm: 31.0 },
-    { size: "16", inches: 12.375, cm: 31.4 },
   ],
   women: [
     { size: "5", inches: 8.1875, cm: 21.6 },
