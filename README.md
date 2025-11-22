@@ -1,19 +1,23 @@
-# SneakerStore - React E-commerce Demo
+# E-Commerce Store with Stripe Checkout
 
-A modern, responsive sneaker e-commerce website built with React and Tailwind CSS. This is a **portfolio project** designed to showcase frontend development skills.
+A full-stack e-commerce application built with React.js frontend and Express.js backend, featuring secure payment processing via Stripe Checkout.
 
-## Features
+##  Features
 
-- **Product Catalog** - Browse curated collection of premium sneakers
-- **Product Details** - View detailed product information and images
-- **Shopping Cart** - Add, remove, and manage items in cart
-- **Responsive Design** - Optimized for desktop, tablet, and mobile
-- **Modern UI** - Clean, minimalist design with Tailwind CSS
+- **Frontend (React.js)**
+  - Modern, responsive user interface
+  - Product catalog and shopping cart
+  - Secure checkout process
+  - Order history and confirmation
 
-## Tech Stack
+- **Backend (Express.js)**
+  - RESTful API architecture
+  - Product management
+  - Order processing
+  - Secure payment integration
 
-- **Frontend**: React 18
-- **Styling**: Tailwind CSS
-- **State Management**: React Context API / useState
-
-[Cick Here to see the published website]([https://khavar-shop.netlify.app]/)
+- **Payment Processing**
+  - Stripe Checkout integration
+  - Secure payment handling
+  - Support for multiple payment methods
+  - Webhook handling for payment events
