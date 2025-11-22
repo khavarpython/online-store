@@ -113,8 +113,8 @@ app.post("/stripe/pay", async (req, res) => {
       payment_method_types: ["card"],
       line_items: items,
       mode: "payment",
-      success_url: "http://localhost:5173/",
-      cancel_url: "http://localhost:5173/cart",
+      success_url: "https://khavar-store.vercel.app/",
+      cancel_url: "https://khavar-store.vercel.app/cart",
     });
 
     res.json({ url: session.url });
