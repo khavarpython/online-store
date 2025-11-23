@@ -8,7 +8,7 @@ function Footer() {
   };
 
   return (
-    <footer className="h-35 w-screen bg-black  text-xs md:text-sm  ">
+    <footer className="h-35 w-full bg-black  text-xs md:text-sm  ">
       <div className="flex text-center justify-center h-full gap-10 text-gray-200">
         <img src={logo} alt="logo" className="w-12 h-auto self-center" />
         <ul className="self-center cursor-pointer ">
