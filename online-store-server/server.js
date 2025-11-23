@@ -18,7 +18,7 @@ app.get("/", (req, res) => {
 app.get("/api/sneakers", async (req, res) => {
   var config = {
     method: "get",
-    url: "https://api.kicks.dev/v3/stockx/products?display[traits]&display[variants]&display[hidden_variants]&display[identifiers]&display[prices]&display[statistics]&filters=product_type%20=%20%27sneakers%27&sort&page&limit=20&market&currency",
+    url: "https://api.kicks.dev/v3/stockx/products?display[traits]&display[variants]&display[hidden_variants]&display[identifiers]&display[prices]&display[statistics]&filters=product_type%20=%20%27sneakers%27&sort&page&limit=10&market&currency",
     headers: {
       Authorization: auth,
     },
@@ -113,7 +113,7 @@ app.post("/api/stripe/pay", async (req, res) => {
       payment_method_types: ["card"],
       line_items: items,
       mode: "payment",
-      success_url: "https://khavar-store.vercel.app/",
+      success_url: "https://khavar-store.vercel.app/success",
       cancel_url: "https://khavar-store.vercel.app/cart",
     });
 
