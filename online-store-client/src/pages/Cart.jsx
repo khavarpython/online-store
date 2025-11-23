@@ -103,6 +103,7 @@ function Cart() {
               className="block bg-black text-white px-2  py-0.5 rounded-md w-1/2 mx-auto mt-2 hover:bg-green-400"
               onClick={() => {
                 makePayment();
+                clearCart();
               }}>
               Buy
             </button>
